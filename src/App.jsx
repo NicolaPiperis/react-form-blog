@@ -35,6 +35,14 @@ function App() {
     setFormData(initialFormData);
   }
 
+  function removeArticle(idToRemove) {
+    // const newUsersList = [...usersList]
+
+    // newUsersList.splice(newUsersList.findIndex((user) => user.id === idToRemove), 1)
+
+    setArticleTitleList(articleTitleList.filter((article) => article.id !== idToRemove));
+  }
+
   return (
     <>
       <form onSubmit={handleFormSubmit}>  
@@ -51,8 +59,13 @@ function App() {
       <div>
         <ul>
           {articleTitleList.map((article) => (
-            <li key={article.id}>
+            <li key={article.id} className="flex py-4 border-b">
               {article.title} - {article.id}
+
+              <button onClick={() => removeArticle(article.id)} className="w-6 h-6 flex items-center justify-center ml-auto bg-red-500 text-white font-bold">
+                X
+              </button>
+
             </li>
           ))}
         </ul>
